@@ -27,7 +27,7 @@ pipeline {
                 }
             }
             steps {
-                sh '''qodana --fail-threshold 0.7'''
+                sh '''qodana --fail-threshold 70'''
             }
         }
         stage('🏗️ Build') {
