@@ -51,7 +51,7 @@ pipeline {
                 jacoco(execPattern: 'target/jacoco.exec')
             }
         }
-        stage('??️ Release') {
+        stage('🏷️ Release') {
             when {
                 expression {
                     return params.NEW_VERSION != null
