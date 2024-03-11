@@ -19,8 +19,11 @@ pipeline {
         stage('🕵️ Lint') {
             agent {
                 docker {
-                    args '-v "${WORKSPACE}":/data/project --entrypoint=""'
-                    image 'jetbrains/qodana-<linter>'
+                    args '''
+                      -v "${WORKSPACE}":/data/project
+                      --entrypoint=""
+                      '''
+                    image 'jetbrains/qodana-jvm'
                 }
             }
             steps {
