@@ -4,7 +4,7 @@ pipeline {
         QODANA_TOKEN=credentials('qodana-token')
     }
     parameters {
-        string(name: 'NEW_VERSION', defaultValue: NULL, description: 'New version to deploy')
+        string(name: 'NEW_VERSION', defaultValue: null, description: 'New version to deploy')
     }
     stages {
         stage('🔑 Checkout') {
