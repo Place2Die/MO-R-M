@@ -16,6 +16,7 @@ pipeline {
                 checkout scm
 
                 // Setup .m2/settings.xml with secret file
+                sh 'mkdir -p .m2'
                 withCredentials([file(credentialsId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
                     sh 'cp $MAVEN_SETTINGS .m2/settings.xml'
                 }
