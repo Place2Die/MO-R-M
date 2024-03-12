@@ -34,7 +34,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     // Build the project
-                    sh 'mvn clean install'
+                    sh 'mvn clean compile'
                 }
                 // Archive the build artifacts
                 archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
