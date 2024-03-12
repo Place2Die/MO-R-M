@@ -62,9 +62,8 @@ pipeline {
         }
         stage('🏷️ Release') {
             when {
-                expression {
-                    return params.NEW_VERSION != null
-                }
+                expression { params.NEW_VERSION != null && params.NEW_VERSION != '' }
+                branch 'master'
             }
             steps {
                 ansiColor('xterm') {
