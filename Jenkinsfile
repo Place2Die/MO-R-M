@@ -14,6 +14,11 @@ pipeline {
 
                 // Clone the repository
                 checkout scm
+
+                // Setup .m2/settings.xml with secret file
+                withCredentials([file(credentialsId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+                    sh 'cp $MAVEN_SETTINGS .m2/settings.xml'
+                }
             }
         }
         stage('🕵️ Lint') {
