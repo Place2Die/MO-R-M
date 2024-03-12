@@ -32,17 +32,20 @@ pipeline {
         }
         stage('🏗️ Build') {
             steps {
-                // Build the project
-                sh 'mvn clean install'
-
+                ansiColor('xterm') {
+                    // Build the project
+                    sh 'mvn clean install'
+                }
                 // Archive the build artifacts
                 archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
             }
         }
         stage ('🧪 Tests') {
             steps {
-                // Run tests
-                sh 'mvn test'
+                ansiColor('xterm') {
+                    // Run tests
+                    sh 'mvn test'
+                }
 
                 // Publish test results
                 junit 'target/surefire-reports/*.xml'
@@ -58,8 +61,10 @@ pipeline {
                 }
             }
             steps {
-                // Update the version
-                sh "mvn versions:set -DnewVersion=${params.NEW_VERSION}"
+                ansiColor('xterm') {
+                    // Update the version
+                    sh "mvn versions:set -DnewVersion=${params.NEW_VERSION}"
+                }
 
                 // Commit the changes
                 sh 'git commit -am ":bookmark: Release ${params.NEW_VERSION}"'
@@ -76,8 +81,10 @@ pipeline {
                 branch 'master'
             }
             steps {
-                // Deploy the application
-                sh 'mvn deploy'
+                ansiColor('xterm') {
+                    // Deploy the application
+                    sh 'mvn deploy'
+                }
             }
         }
     }
