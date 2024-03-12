@@ -40,7 +40,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     // Build the project
-                    sh 'mvn clean compile'
+                    sh 'mvn --settings .m2/settings.xml clean compile'
                 }
                 // Archive the build artifacts
                 archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
@@ -50,7 +50,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     // Run tests
-                    sh 'mvn test'
+                    sh 'mvn --settings .m2/settings.xml test'
                 }
 
                 // Publish test results
@@ -69,7 +69,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     // Update the version
-                    sh "mvn versions:set -DnewVersion=${params.NEW_VERSION}"
+                    sh "mvn --settings .m2/settings.xml versions:set -DnewVersion=${params.NEW_VERSION}"
                 }
 
                 // Commit the changes
@@ -89,7 +89,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     // Deploy the application
-                    sh 'mvn deploy'
+                    sh 'mvn --settings .m2/settings.xml deploy'
                 }
             }
         }
