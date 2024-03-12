@@ -57,7 +57,7 @@ pipeline {
                 junit 'target/surefire-reports/*.xml'
 
                 // Publish code coverage using JaCoCo
-                jacoco(execPattern: 'target/jacoco.exec')
+                jacoco(execPattern: 'target/jacoco.exec', classPattern: 'target/classes', sourcePattern: 'src/main/java')
             }
         }
         stage('🏷️ Release') {
