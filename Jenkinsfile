@@ -40,7 +40,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     // Build the project
-                    sh 'mvn --settings .m2/settings.xml clean compile'
+                    sh 'mvn --settings .m2/settings.xml clean package'
                 }
                 // Archive the build artifacts
                 archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
